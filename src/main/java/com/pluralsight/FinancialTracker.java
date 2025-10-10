@@ -1,6 +1,9 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +19,9 @@ import java.util.Scanner;
  * as a negative amount.
  */
 public class FinancialTracker {
+    public class Transaction {
+
+    }
 
     /* ------------------------------------------------------------------
        Shared data and formatters
@@ -74,6 +80,31 @@ public class FinancialTracker {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
+
+        DateTimeFormatter dateTimeFormatter = DATETIME_FMT;
+        try (Scanner scanner = new Scanner(System.in)) {
+            String input = scanner.nextLine().trim();
+            boolean running = true;
+
+            System.out.println("Transactions");
+            System.out.println("Provide the date and time like this: yyyy-MM-dd HH:mm:ss");
+            System.out.println("D) Description");
+            System.out.println("V) Vendor");
+            System.out.println("A) Amount");
+
+            switch (input.toUpperCase()) {
+                case "D" -> loadTransactions();
+                case "V" ->  ();
+                case "A" ->  ();
+                case "X" -> running = false;
+                default -> System.out.println("Exit");
+
+
+
+
+        }
+
+
     }
 
     /* ------------------------------------------------------------------
@@ -129,7 +160,10 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format */ }
+    private static void displayLedger()
+
+
+    { /* TODO – print all transactions in column format  */ }
 
     private static void displayDeposits() { /* TODO – only amount > 0               */ }
 
@@ -178,9 +212,28 @@ public class FinancialTracker {
     }
 
     private static void customSearch(Scanner scanner) {
-        // TODO – prompt for any combination of date range, description,
-        //        vendor, and exact amount, then display matches
+        boolean running = true;
+        while (running) {
+            System.out.println("CustomSearch");
+            System.out.println("Choose an option:");
+            System.out.println("S) Start Date");
+            System.out.println("E) End Date");
+            System.out.println("D) Description");
+            System.out.println("V) Vendor");
+            System.out.println("A) Amount");
+
+            String input = scanner.nextLine().trim();
+
+            switch (input.toUpperCase()) {
+                case "S" -> ();
+                case "E" -> ();
+                case "D" -> customSearch(scanner);
+                case "V" -> ;
+                case "A" ->
+                case "X" -> running = false;
+                default -> System.out.println("Invalid option");
     }
+
 
     /* ------------------------------------------------------------------
        Utility parsers (you can reuse in many places)
