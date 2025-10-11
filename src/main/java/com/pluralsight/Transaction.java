@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Transaction {
-    date|time|description|vendor|amount
 
     LocalDate date;
     LocalTime time;

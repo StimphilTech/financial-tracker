@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import com.sun.net.httpserver.HttpServer;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -81,23 +83,31 @@ public class FinancialTracker {
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
 
-        DateTimeFormatter dateTimeFormatter = DATETIME_FMT;
-        try (Scanner scanner = new Scanner(System.in)) {
-            String input = scanner.nextLine().trim();
-            boolean running = true;
 
-            System.out.println("Transactions");
-            System.out.println("Provide the date and time like this: yyyy-MM-dd HH:mm:ss");
-            System.out.println("D) Description");
-            System.out.println("V) Vendor");
-            System.out.println("A) Amount");
 
-            switch (input.toUpperCase()) {
-                case "D" -> loadTransactions();
-                case "V" ->  ();
-                case "A" ->  ();
-                case "X" -> running = false;
-                default -> System.out.println("Exit");
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_NAME))) {
+            System.out.println("That file exist\n");
+            System.out.println("2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50\n");
+            System.out.println("2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00\n");
+            System.out.println("2023-04-16|14:30:45|Grocery shopping|Walmart|-120.35\n");
+            System.out.println("2024-04-17|09:05:10|Gasoline|Shell|-45.00\n");
+            System.out.println("2024-04-18|12:30:00|Monthly rent payment|ABC Apartments|-2000.00/\n");
+            System.out.println("2024-04-19|15:20:30|Dinner with friends|Cheesecake Factory|-85.20\n");
+            System.out.println("2024-04-21|08:45:00|Salary deposit|ABC Company|5000.00\n");
+            System.out.println("2024-04-23|14:00:15|Haircut|Mario's Barber Shop|-35.00\n");
+            System.out.println("2024-04-24|16:10:00|Online course subscription|Udemy|-70.00\n");
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+
+            }
+            bufferedReader.close();
+
+        }catch (IOException e) {
+            System.out.println("Exit The Application.");
+            e.printStackTrace();
+        }
 
 
 
@@ -105,7 +115,15 @@ public class FinancialTracker {
         }
 
 
-    }
+
+
+
+
+
+        }
+
+
+
 
     /* ------------------------------------------------------------------
        Add new transactions
@@ -119,6 +137,25 @@ public class FinancialTracker {
      */
     private static void addDeposit(Scanner scanner) {
         // TODO
+        boolean running = true;
+        while (running) {
+
+        System.out.println("Transactions");
+        System.out.println("T)Provide the date and time like this: yyyy-MM-dd HH:mm:ss");
+        System.out.println("D) Description");
+        System.out.println("V) Vendor");
+        System.out.println("A) Amount");
+
+            String input = scanner.nextLine().trim();
+
+            switch (input.toUpperCase()) {
+                case "A" -> ();
+                case "D" -> ();
+                case "P" -> ();
+                case "R" -> (scanner);
+                case "X" -> running = false;
+                default -> System.out.println("Exit The Application");
+
     }
 
     /**
