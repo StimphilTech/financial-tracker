@@ -122,13 +122,18 @@ public class FinancialTracker {
      */
     private static void addDeposit(Scanner scanner) {
         // TODO
-        //Comments: Ask the use for the date\time\desc\amt
+        //Comments: Ask the user for the date\time\desc\amt
         //Localdate.parse(User Input,DATE_FMT)
 
         scanner.nextLine();
         System.out.println("Please provide date using \"yyyy-MM-dd");
         String UserDate = scanner.nextLine();
         LocalDate date = LocalDate.parse(UserDate, DATE_FMT);
+        System.out.println("Please provide the Time");
+        String UserTime = scanner.nextLine();
+        LocalTime time = LocalTime.parse(UserTime,TIME_FMT);
+        System.out.println("Please provide the description");
+        String desc
         // Finish asking everything and then finish to add transaction array list
         //Bufferedwriter.Appending a new line to a BufferedWriter
 
