@@ -70,6 +70,7 @@ public class FinancialTracker {
                 default -> System.out.println("Exit the Application ");
             }
         }
+        System.out.println("Goodbye! Exiting TransactionApp...");
         scanner.close();
     }
 
@@ -90,33 +91,31 @@ public class FinancialTracker {
 
 
 
-        try {
-            FileReader fileReader = new FileReader("transactions.csv");
-        }
-        ( BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
-            {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
-
-
-            System.out.println("That file exist\n");
-            System.out.println("2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50\n");
-            System.out.println("2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00\n");
-            System.out.println("2023-04-16|14:30:45|Grocery shopping|Walmart|-120.35\n");
-            System.out.println("2024-04-17|09:05:10|Gasoline|Shell|-45.00\n");
-            System.out.println("2024-04-18|12:30:00|Monthly rent payment|ABC Apartments|-2000.00/\n");
-            System.out.println("2024-04-19|15:20:30|Dinner with friends|Cheesecake Factory|-85.20\n");
-            System.out.println("2024-04-21|08:45:00|Salary deposit|ABC Company|5000.00\n");
-            System.out.println("2024-04-23|14:00:15|Haircut|Mario's Barber Shop|-35.00\n");
+            System.out.println("That file exists.\n");
+            System.out.println("Sample transactions:\n");
+            System.out.println("2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50");
+            System.out.println("2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00");
+            System.out.println("2023-04-16|14:30:45|Grocery shopping|Walmart|-120.35");
+            System.out.println("2024-04-17|09:05:10|Gasoline|Shell|-45.00");
+            System.out.println("2024-04-18|12:30:00|Monthly rent payment|ABC Apartments|-2000.00");
+            System.out.println("2024-04-19|15:20:30|Dinner with friends|Cheesecake Factory|-85.20");
+            System.out.println("2024-04-21|08:45:00|Salary deposit|ABC Company|5000.00");
+            System.out.println("2024-04-23|14:00:15|Haircut|Mario's Barber Shop|-35.00");
             System.out.println("2024-04-24|16:10:00|Online course subscription|Udemy|-70.00\n");
 
-            while (!((line = BufferedReader.readLine()) == null)) {
+            // Now read actual lines from file
+            System.out.println("Reading from file:");
+            while ((line = reader.readLine()) != null) {
                 System.out.println(line);
+            }
 
-                BufferedReader.close();
-
-                catch (IOException FILE_NAME) {
-                    System.out.println("Exit The Application.");
-                    FILE_NAME.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + FILE_NAME);
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -129,7 +128,7 @@ public class FinancialTracker {
 
 
 
-        }
+
 
 
 
@@ -144,7 +143,7 @@ public class FinancialTracker {
      * Validate that the amount entered is positive.
      * Store the amount as-is (positive) and append to the file.
      */
-    private static void addDeposit(Scanner scanner) {
+    private static void addDeposit (Scanner scanner) {
         // TODO
         boolean running = true;
         while (running) {
@@ -160,7 +159,13 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "A" -> ();
+                case "A" -> {
+                    System.out.println("Enter amount:");
+                    double amount = scanner.nextDouble();
+                    scanner.nextLine(); // consume newline
+                    System.out.println("Amount entered: " + amount);
+                }
+
                 case "D" -> ();
                 case "P" -> ();
                 case "R" -> (scanner);
