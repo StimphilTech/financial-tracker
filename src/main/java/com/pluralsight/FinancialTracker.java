@@ -6,8 +6,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -45,6 +47,8 @@ public class FinancialTracker {
     public static void main(String[] args) {
         loadTransactions(FILE_NAME);
 
+
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -63,7 +67,7 @@ public class FinancialTracker {
                 case "P" -> addPayment(scanner);
                 case "L" -> ledgerMenu(scanner);
                 case "X" -> running = false;
-                default -> System.out.println("Invalid option");
+                default -> System.out.println("Exit the Application ");
             }
         }
         scanner.close();
@@ -86,7 +90,14 @@ public class FinancialTracker {
 
 
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_NAME))) {
+        try {
+            FileReader fileReader = new FileReader("transactions.csv");
+        }
+        ( BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
+            {
+            String line;
+
+
             System.out.println("That file exist\n");
             System.out.println("2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50\n");
             System.out.println("2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00\n");
@@ -97,17 +108,15 @@ public class FinancialTracker {
             System.out.println("2024-04-21|08:45:00|Salary deposit|ABC Company|5000.00\n");
             System.out.println("2024-04-23|14:00:15|Haircut|Mario's Barber Shop|-35.00\n");
             System.out.println("2024-04-24|16:10:00|Online course subscription|Udemy|-70.00\n");
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
+
+            while (!((line = BufferedReader.readLine()) == null)) {
                 System.out.println(line);
 
-            }
-            bufferedReader.close();
+                BufferedReader.close();
 
-        }catch (IOException e) {
-            System.out.println("Exit The Application.");
-            e.printStackTrace();
-        }
+                catch (IOException FILE_NAME) {
+                    System.out.println("Exit The Application.");
+                    FILE_NAME.printStackTrace();
 
 
 
@@ -141,7 +150,9 @@ public class FinancialTracker {
         while (running) {
 
         System.out.println("Transactions");
-        System.out.println("T)Provide the date and time like this: yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter fmt =
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            System.out.println("T)Provide the date and time like this: yyyy-MM-dd HH:mm:ss");
         System.out.println("D) Description");
         System.out.println("V) Vendor");
         System.out.println("A) Amount");
@@ -156,7 +167,7 @@ public class FinancialTracker {
                 case "X" -> running = false;
                 default -> System.out.println("Exit The Application");
 
-    }
+    } SimpleDateFormat sdfmt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * Same prompts as addDeposit.
@@ -164,7 +175,25 @@ public class FinancialTracker {
      * then converted to a negative amount before storing.
      */
     private static void addPayment(Scanner scanner) {
-        // TODO
+         boolean running = true;
+                       while (running) {
+                //            System.out.println("Ledger");
+                //            System.out.println("Choose an option:");
+                //            System.out.println("A) All");
+                //            System.out.println("D) Deposits");
+                //            System.out.println("P) Payments");
+                //            System.out.println("R) Reports");
+                //            System.out.println("H) Home");
+                //
+                //            String input = scanner.nextLine().trim();
+                //
+                //            switch (input.toUpperCase()) {
+                //                case "A" -> displayLedger();
+                //                case "D" -> displayDeposits();
+                //                case "P" -> displayPayments();
+                //                case "R" -> reportsMenu(scanner);
+                //                case "H" -> running = false;
+                //                default -> System.out.println("Invalid option");
     }
 
     /* ------------------------------------------------------------------
@@ -191,7 +220,27 @@ public class FinancialTracker {
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");
             }
-        }
+        } private static void ledgerMenu(Scanner scanner) {
+                        boolean running = true;
+                        while (running) {
+                            System.out.println("Ledger");
+                            System.out.println("Choose an option:");
+                            System.out.println("A) All");
+                            System.out.println("D) Deposits");
+                            System.out.println("P) Payments");
+                            System.out.println("R) Reports");
+                            System.out.println("H) Home");
+
+                            String input = scanner.nextLine().trim();
+
+                            switch (input.toUpperCase()) {
+                                case "A" -> displayLedger();
+                                case "D" -> displayDeposits();
+                                case "P" -> displayPayments();
+                                case "R" -> reportsMenu(scanner);
+                                case "H" -> running = false;
+                                default -> System.out.println("Invalid option");
+                            }
     }
 
     /* ------------------------------------------------------------------
@@ -226,10 +275,10 @@ public class FinancialTracker {
 
             switch (input) {
                 case "1" -> {/* TODO – month-to-date report */ }
-                case "2" -> {/* TODO – previous month report */ }
+                case "2" -> { Period period1m = Period.ofMonths(1); }
                 case "3" -> {/* TODO – year-to-date report   */ }
-                case "4" -> {/* TODO – previous year report  */ }
-                case "5" -> {/* TODO – prompt for vendor then report */ }
+                case "4" -> { Period period1y = Period.ofYears(1);  }
+                case "5" -> {/* TODO – prompt for vendor then report "Search by Vendor then report": */ }
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
