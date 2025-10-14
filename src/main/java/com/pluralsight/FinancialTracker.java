@@ -2,10 +2,7 @@ package com.pluralsight;
 
 import jdk.jfr.DataAmount;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -127,6 +124,9 @@ public class FinancialTracker {
         // TODO
         //Comments: Ask the user for the date\time\desc\amt
         //Localdate.parse(User Input,DATE_FMT)
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))){
+        FinancialTracker financialtracker1 = new FinancialTracker();
+
 
         scanner.nextLine();
         System.out.println("Please provide date using \"yyyy-MM-dd");
@@ -137,11 +137,12 @@ public class FinancialTracker {
         LocalTime time = LocalTime.parse(UserTime,TIME_FMT);
         System.out.println("Please provide the description");
         String desc = scanner.nextLine();
-        FinancialTracker.setDescription(desc);
+        FinancialTracker.setDescription();
         String vendor = scanner.nextLine();
-
-        FinancialTracker.setVendor(vendor);
+        FinancialTracker.setVendor();
         double amt = Double.parseDouble();
+
+
 
 
 
