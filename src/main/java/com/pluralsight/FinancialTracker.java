@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import jdk.jfr.DataAmount;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +11,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 /*
  * Capstone skeleton – personal finance tracker.
@@ -133,8 +136,16 @@ public class FinancialTracker {
         String UserTime = scanner.nextLine();
         LocalTime time = LocalTime.parse(UserTime,TIME_FMT);
         System.out.println("Please provide the description");
-        String desc
-        // Finish asking everything and then finish to add transaction array list
+        String desc = scanner.nextLine();
+        FinancialTracker.setDescription(desc);
+        String vendor = scanner.nextLine();
+
+        FinancialTracker.setVendor(vendor);
+        double amt = Double.parseDouble();
+
+
+
+        // Finish asking everything and then finish to add the transaction array list
         //Bufferedwriter.Appending a new line to a BufferedWriter
 
 
