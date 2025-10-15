@@ -1,15 +1,14 @@
 package com.pluralsight;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Transaction {
 
-    LocalDate date;
-    LocalTime time;
-    String description;
-    String vendor;
-    double amount;
+   private LocalDate date;
+    private LocalTime time;
+    private String description;
+    private String vendor;
+    private double amount;
 
     public Transaction(double amount, LocalDate date, String description, LocalTime time, String vendor) {
         this.amount = amount;
@@ -61,12 +60,16 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "amount=" + amount +
-                ", date=" + date +
-                ", time=" + time +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                '}';
+//        return "Transaction{" +
+//                "amount=" + amount +
+//                ", date=" + date +
+//                ", time=" + time +
+//                ", description='" + description + '\'' +
+//                ", vendor='" + vendor + '\'' +
+//                '}';
+
+        return date+"|"+time+"|"+description+"|"+vendor+"|"+amount;
+
+
     }
 }

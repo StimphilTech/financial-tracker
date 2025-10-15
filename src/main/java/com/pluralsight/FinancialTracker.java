@@ -19,7 +19,7 @@ import java.util.Scanner;
  * as a negative amount.
  */
 public class FinancialTracker {
-
+    static Scanner scanner;
     /* ------------------------------------------------------------------
        Shared data and formatters
        ------------------------------------------------------------------ */
@@ -38,12 +38,12 @@ public class FinancialTracker {
        Main menu
        ------------------------------------------------------------------ */
     public static void main(String[] args) throws IOException {
-        loadTransactions(FILE_NAME);
+        loadTransactions();
         //for(Transaction T:transactions){
             //System.out.println(T);
         //}
 
-        Scanner scanner = new Scanner(System.in);
+       scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
@@ -57,9 +57,9 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
-                case "D" -> addDeposit(scanner);
-                case "P" -> addPayment(scanner);
-                case "L" -> ledgerMenu(scanner);
+                case "D" -> addDeposit();
+                case "P" -> addPayment();
+                case "L" -> ledgerMenu();
                 case "X" -> running = false;
                 default -> System.out.println("Invalid option");
             }
@@ -76,12 +76,12 @@ public class FinancialTracker {
      * • If the file doesn’t exist, create an empty one so that future writes succeed.
      * • Each line looks like: date|time|description|vendor|amount
      */
-    public static void loadTransactions(String f) throws IOException {
+    public static void loadTransactions() throws IOException {
         // TODO: create file if it does not exist, then read each line,
         //       parse the five fields, build a Transaction object,
         //       and add it to the transactions list.
         File file = new File (FILE_NAME);
-        if (! file.exists()){
+        if (!file.exists()){
             file.createNewFile();
         }
         try {
@@ -90,8 +90,8 @@ public class FinancialTracker {
 
             while((input = reader.readLine()) != null) {
                 String[] token = input.split("\\|");
-                LocalDate date = LocalDate.parse(token [0]);
-                LocalTime time = LocalTime.parse(token [1]);
+                LocalDate date = LocalDate.parse(token [0]);//add DateFMT
+                LocalTime time = LocalTime.parse(token [1]);//add Time_FMT
                 String desc = (token [2]);
                 String vendor = (token [3]);
                 double amt = Double.parseDouble(token [4]);
@@ -101,8 +101,6 @@ public class FinancialTracker {
 
             }
             reader.close();
-
-
 
         } catch (IOException e) {
             System.out.println("File cannot be read");;
@@ -120,36 +118,41 @@ public class FinancialTracker {
      * Validate that the amount entered is positive.
      * Store the amount as-is (positive) and append to the file.
      */
-    private static void addDeposit(Scanner scanner) {
+    private static void addDeposit() {
         // TODO
         //Comments: Ask the user for the date\time\desc\amt
         //Localdate.parse(User Input,DATE_FMT)
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))){
-        FinancialTracker financialtracker1 = new FinancialTracker();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))){ //do not use try with resources , use normal try/catch
 
-
-        scanner.nextLine();
-        System.out.println("Please provide date using \"yyyy-MM-dd");
-        String UserDate = scanner.nextLine();
-        LocalDate date = LocalDate.parse(UserDate, DATE_FMT);
+        System.out.println("Please provide date using \"yyyy-MM-dd\"");
+        String userDate = scanner.nextLine();
+        LocalDate date = LocalDate.parse(userDate, DATE_FMT);
         System.out.println("Please provide the Time");
-        String UserTime = scanner.nextLine();
-        LocalTime time = LocalTime.parse(UserTime,TIME_FMT);
+        String userTime = scanner.nextLine();
+        LocalTime time = LocalTime.parse(userTime,TIME_FMT);
         System.out.println("Please provide the description");
         String desc = scanner.nextLine();
-        FinancialTracker.setDescription();
+        System.out.println("Please provide the vendor");
         String vendor = scanner.nextLine();
-        FinancialTracker.setVendor();
-        double amt = Double.parseDouble();
 
-
+            System.out.println("Please provide the amount");
+        double amt = Double.parseDouble(scanner.nextLine());
 
 
 
         // Finish asking everything and then finish to add the transaction array list
         //Bufferedwriter.Appending a new line to a BufferedWriter
 
+            //create the transaction object (a new object(
+            Transaction t = new Transaction(amt, date, time, desc, vendor);
+            //write the transaction to the file
+            writer.write(t + "\n");
 
+
+
+    } catch(Exception e){
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 
     /**
@@ -157,16 +160,28 @@ public class FinancialTracker {
      * Amount must be entered as a positive number,
      * then converted to a negative amount before storing.
      */
-    private static void addPayment(Scanner scanner) {
+    private static void addPayment() {
         // TODO
+
+        try(FileWriter fileWriter = new FileWriter(FILE_NAME); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)){
+
+            //TODO:
+        } catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+
+        } //end of try catch
+
+            System.out.println("Please provide the date using yyyy-MM-dd ");
+
     }//enter payment instead of enter deposit
 
 
     /* ------------------------------------------------------------------
        Ledger menu
        ------------------------------------------------------------------ */
-    private static void ledgerMenu(Scanner scanner) {
+    private static void ledgerMenu() {
         boolean running = true;
+
         while (running) {
             System.out.println("Ledger");
             System.out.println("Choose an option:");
@@ -182,17 +197,26 @@ public class FinancialTracker {
                 case "A" -> displayLedger();
                 case "D" -> displayDeposits();
                 case "P" -> displayPayments();
-                case "R" -> reportsMenu(scanner);
+                case "R" -> reportsMenu();
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");
-            }
-        }
+            } //end of the switch statment
+
+
+        } //end of the while-loop
     }
 
     /* ------------------------------------------------------------------
        Display helpers: show data in neat columns
        ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format */ }
+    private static void displayLedger() { /* TODO – print all transactions in column format */
+
+        //enhanced for-loop
+        for(Transaction t: transactions){
+            System.out.println(t);
+        }
+
+    }
 
     private static void displayDeposits() { /* TODO – only amount > 0               */ }
 
@@ -201,7 +225,7 @@ public class FinancialTracker {
     /* ------------------------------------------------------------------
        Reports menu
        ------------------------------------------------------------------ */
-    private static void reportsMenu(Scanner scanner) {
+    private static void reportsMenu() {
         boolean running = true;
         while (running) {
             System.out.println("Reports");
