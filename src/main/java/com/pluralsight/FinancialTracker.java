@@ -144,7 +144,7 @@ public class FinancialTracker {
         //Bufferedwriter.Appending a new line to a BufferedWriter
 
             //create the transaction object (a new object(
-            Transaction t = new Transaction(amt, date, time, desc, vendor);
+            Transaction t = new Transaction(amt, date, desc, time, vendor);
             //write the transaction to the file
             writer.write(t + "\n");
 
@@ -165,13 +165,16 @@ public class FinancialTracker {
 
         try(FileWriter fileWriter = new FileWriter(FILE_NAME); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)){
 
+            bufferedWriter.write("Please provide the date using \"yyyy-MM-dd\"");
+            bufferedWriter.write("Please provide the time using \"HH:mm:ss\"");
+
+
             //TODO:
         } catch (Exception e){
             System.out.println(e.getLocalizedMessage());
 
         } //end of try catch
 
-            System.out.println("Please provide the date using yyyy-MM-dd ");
 
     }//enter payment instead of enter deposit
 
