@@ -52,8 +52,10 @@ Outline potential future enhancements or functionalities you might consider addi
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
+- [Beginners Book](https://beginnersbook.com/2014/01/how-to-read-file-in-java-using-bufferedreader/)
 - [Effective Java](https://www.example.com)
+- Java Workbooks
+- 
 
 ## Team Members
 
@@ -64,5 +66,5 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to Raymond Maroun for continuous support and guidance.
+- Thank you to Raymond, Andy and Nauman and everyone else that I did not mention for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.

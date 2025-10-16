@@ -1,7 +1,5 @@
 package com.pluralsight;
 
-import jdk.jfr.DataAmount;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -125,7 +123,7 @@ public class FinancialTracker {
         //Localdate.parse(User Input,DATE_FMT)
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))){ //do not use try with resources , use normal try/catch
 
-        System.out.println("Please provide date using \"yyyy-MM-dd\"" + " " + "and " +  TIME_PATTERN );
+        System.out.println("Please provide date and using this format:" + " " + DATETIME_PATTERN);
         String userDate = scanner.nextLine();
         LocalDateTime date = LocalDateTime.parse(userDate, DATETIME_FMT);
         LocalDate date2 = date.toLocalDate();
@@ -170,8 +168,10 @@ public class FinancialTracker {
 
         try(FileWriter fileWriter = new FileWriter(FILE_NAME); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)){
 
-           bufferedWriter.write("Please provide the date using \"yyyy-MM-dd\"\n");
-           bufferedWriter.write("Please provide the time using \"HH:mm:ss\"\n");
+           System.out.println("Please provide the date using" + " " + DATETIME_PATTERN );
+           System.out.println("Please provide the description");
+            System.out.println("Please provide the vendor");
+            System.out.println("Please provide the amount");
 
 
             //TODO:
@@ -249,7 +249,7 @@ public class FinancialTracker {
             String input = scanner.nextLine().trim();
 
             switch (input) {
-                case "1" -> {/* TODO – month-to-date report */ }
+                case "1" -> {monthToDateReport();}
                 case "2" -> {/* TODO – previous month report */ }
                 case "3" -> {/* TODO – year-to-date report   */ }
                 case "4" -> {/* TODO – previous year report  */ }
@@ -261,11 +261,24 @@ public class FinancialTracker {
         }
     }
 
+    private static void monthToDateReport() {
+        System.out.println("This is the last months report"); //example
+
+        //find out the start date for the report
+
+        //find out the end date of the report
+
+        //pass the start date and end date into the filtertransactionsbydate method
+
+
+    }
+
     /* ------------------------------------------------------------------
        Reporting helpers
        ------------------------------------------------------------------ */
     private static void filterTransactionsByDate(LocalDate start, LocalDate end) {
         // TODO – iterate transactions, print those within the range
+        //use the start and end date to determine what dates in the iteration to print out
     }
 
     private static void filterTransactionsByVendor(String vendor) {
