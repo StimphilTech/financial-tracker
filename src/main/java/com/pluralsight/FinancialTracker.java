@@ -169,9 +169,14 @@ public class FinancialTracker {
         try(FileWriter fileWriter = new FileWriter(FILE_NAME); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)){
 
            System.out.println("Please provide the date using" + " " + DATETIME_PATTERN );
+            String userDateTime = scanner.nextLine();
+            LocalDateTime date = LocalDateTime.parse(userDateTime, DATETIME_FMT);
            System.out.println("Please provide the description");
+            String desc = scanner.nextLine();
             System.out.println("Please provide the vendor");
+            String vendor = scanner.nextLine();
             System.out.println("Please provide the amount");
+            double amt = Double.parseDouble(scanner.nextLine());
 
 
             //TODO:
@@ -247,13 +252,19 @@ public class FinancialTracker {
             System.out.println("0) Back");
 
             String input = scanner.nextLine().trim();
+            String description = ""; //had to name the string before adding into case
 
             switch (input) {
-                case "1" -> {monthToDateReport();}
-                case "2" -> {/* TODO – previous month report */ }
-                case "3" -> {/* TODO – year-to-date report   */ }
-                case "4" -> {/* TODO – previous year report  */ }
-                case "5" -> {/* TODO – prompt for vendor then report */ }
+                case "1" ->  // {monthToDateReport();}
+                description = "Month to Date report ";
+                case "2" ->
+                description = "previous month report";
+                case "3" ->
+                description = "year-to-date report";
+                case "4" ->
+                description = "previous year report";
+                case "5" ->
+                description = "What is the vendor and report";
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
