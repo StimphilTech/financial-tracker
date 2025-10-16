@@ -53,8 +53,9 @@ Outline potential future enhancements or functionalities you might consider addi
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
 - [Beginners Book](https://beginnersbook.com/2014/01/how-to-read-file-in-java-using-bufferedreader/)
-- [Effective Java](https://www.example.com)
+- [W3Schools](https://www.w3schools.com/java/java_bufferedreader.asp)
 - Java Workbooks
+- 
 - 
 
 ## Team Members
