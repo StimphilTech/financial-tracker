@@ -4,6 +4,7 @@ import jdk.jfr.DataAmount;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -122,14 +123,17 @@ public class FinancialTracker {
         // TODO
         //Comments: Ask the user for the date\time\desc\amt
         //Localdate.parse(User Input,DATE_FMT)
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))){ //do not use try with resources , use normal try/catch
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))){ //do not use try with resources , use normal try/catch
 
-        System.out.println("Please provide date using \"yyyy-MM-dd\"");
+        System.out.println("Please provide date using \"yyyy-MM-dd\"" + " " + "and " +  TIME_PATTERN );
         String userDate = scanner.nextLine();
-        LocalDate date = LocalDate.parse(userDate, DATE_FMT);
-        System.out.println("Please provide the Time");
-        String userTime = scanner.nextLine();
-        LocalTime time = LocalTime.parse(userTime,TIME_FMT);
+        LocalDateTime date = LocalDateTime.parse(userDate, DATETIME_FMT);
+        LocalDate date2 = date.toLocalDate();
+        LocalTime time2 = date.toLocalTime();
+
+    //    System.out.println("Please provide the Time using this format HH:mm:ss ");
+    //    String userTime = scanner.nextLine();
+    //    LocalTime time = LocalTime.parse(userTime,TIME_FMT);
         System.out.println("Please provide the description");
         String desc = scanner.nextLine();
         System.out.println("Please provide the vendor");
@@ -144,9 +148,10 @@ public class FinancialTracker {
         //Bufferedwriter.Appending a new line to a BufferedWriter
 
             //create the transaction object (a new object(
-            Transaction t = new Transaction(amt, date, desc, time, vendor);
+            Transaction t = new Transaction(amt, date2, desc, time2, vendor);
             //write the transaction to the file
             writer.write(t + "\n");
+            writer.close();
 
 
 
@@ -165,8 +170,8 @@ public class FinancialTracker {
 
         try(FileWriter fileWriter = new FileWriter(FILE_NAME); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)){
 
-            bufferedWriter.write("Please provide the date using \"yyyy-MM-dd\"");
-            bufferedWriter.write("Please provide the time using \"HH:mm:ss\"");
+           bufferedWriter.write("Please provide the date using \"yyyy-MM-dd\"\n");
+           bufferedWriter.write("Please provide the time using \"HH:mm:ss\"\n");
 
 
             //TODO:

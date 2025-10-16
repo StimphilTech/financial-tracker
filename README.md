@@ -57,8 +57,8 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- ** ** - Specific contributions or roles.
+- ** ** - Specific contributions or roles.
 
 ## Thanks
 
