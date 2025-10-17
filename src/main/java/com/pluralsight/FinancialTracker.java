@@ -107,9 +107,7 @@ public class FinancialTracker {
         }
     }
 
-    /* ------------------------------------------------------------------
-       Add new transactions
-       ------------------------------------------------------------------ */
+
 
     /**
      * Prompt for ONE date+time string in the format
@@ -179,7 +177,6 @@ public class FinancialTracker {
             double amt = Double.parseDouble(scanner.nextLine());
 
 
-            //TODO:
         } catch (Exception e){
             System.out.println(e.getLocalizedMessage());
 
@@ -255,16 +252,15 @@ public class FinancialTracker {
             String description = ""; //had to name the string before adding into case
 
             switch (input) {
-                case "1" ->  // {monthToDateReport();}
-                description = "Month to Date report ";
+                case "1" -> monthToDateReport();
+
                 case "2" ->
-                description = "previous month report";
-                case "3" ->
-                description = "year-to-date report";
-                case "4" ->
-                description = "previous year report";
-                case "5" ->
-                description = "What is the vendor and report";
+                    LocalDate parseDate();
+                }
+
+                case "3" -> filterTransactionsByDate();
+                case "4" -> filterTransactionsByMonth();
+                case "5" -> filterTransactionsByVendor(vendor);
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -273,7 +269,7 @@ public class FinancialTracker {
     }
 
     private static void monthToDateReport() {
-        System.out.println("This is the last months report"); //example
+        System.out.println("This is the last months report");
 
         //find out the start date for the report
 
