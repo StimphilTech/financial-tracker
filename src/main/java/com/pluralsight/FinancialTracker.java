@@ -210,16 +210,14 @@ public class FinancialTracker {
                 case "R" -> reportsMenu();
                 case "H" -> running = false;
                 default -> System.out.println("Invalid option");
-            } //end of the switch statment
+            }
 
 
-        } //end of the while-loop
+        }
     }
 
-    /* ------------------------------------------------------------------
-       Display helpers: show data in neat columns
-       ------------------------------------------------------------------ */
-    private static void displayLedger() { /* TODO – print all transactions in column format */
+
+    private static void displayLedger() {
 
         //enhanced for-loop
         for(Transaction t: transactions){
@@ -232,9 +230,7 @@ public class FinancialTracker {
 
     private static void displayPayments() { /* TODO – only amount < 0               */ }
 
-    /* ------------------------------------------------------------------
-       Reports menu
-       ------------------------------------------------------------------ */
+
     private static void reportsMenu() {
         boolean running = true;
         while (running) {
@@ -252,15 +248,11 @@ public class FinancialTracker {
             String description = ""; //had to name the string before adding into case
 
             switch (input) {
-                case "1" -> monthToDateReport();
-
-                case "2" ->
-                    LocalDate parseDate();
-                }
-
-                case "3" -> filterTransactionsByDate();
-                case "4" -> filterTransactionsByMonth();
-                case "5" -> filterTransactionsByVendor(vendor);
+                case "1" -> {monthToDateReport();}
+                case "2" -> {;}
+                case "3" -> {}
+                case "4" -> {}
+                case "5" -> {}
                 case "6" -> customSearch(scanner);
                 case "0" -> running = false;
                 default -> System.out.println("Invalid option");
@@ -309,4 +301,13 @@ public class FinancialTracker {
         /* TODO – return Double   or null */
         return null;
     }
+
+
+    private static void filterTransactionsByMonth() {
+
+
 }
+
+    private static void previousMonthReport() {}}
+
+
